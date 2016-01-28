@@ -17,7 +17,7 @@
 	</div>
 
 	<div v-show='focus == null && settings'>
-		<input placeholder='Nazwa grupy' v-model='newGroup'>
+		<input placeholder='Nazwa grupy' v-model='newGroup' @keydown.enter='addGroup'>
 		<button @click='addGroup'>Dodaj grupę</button>
 		<ul>
 			<li track-by='$index' v-for='group in groups' class='question'>
@@ -31,7 +31,7 @@
 
 	<div id='settings' v-show='focus != null && settings'>
 		<h1> {{ focus != null&&groups[focus].name }} </h1>
-		<input placeholder='Pytanie' v-model='newQuestion'>
+		<input placeholder='Pytanie' v-model='newQuestion' @keydown.enter='addQuestion'>
 		<button @click='addQuestion'>Dodaj pytanie</button>
 		<ul>
 			<li track-by="$index" v-for='question in questions' class='question'>
