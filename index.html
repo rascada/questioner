@@ -26,6 +26,10 @@
 				<button @click='changeGroup($index)'> Pytania ({{ group.questions.length }}) </button>
 				<button @click='removeGroup($index)'>X</button>
 			</li>
+			<li v-show='newGroup' class='question'>
+				<span>#0</span>
+				<input v-model='newGroup'>
+			</li>
 		</ul>
 	</div>
 
@@ -38,6 +42,11 @@
 				<span>{{ $index | questionNumber }}</span>
 				<input v-model='question'>
 				<button @click='removeQuestion($index)'>X</button>
+			</li>
+
+			<li v-show='newQuestion' class='question'>
+				<span>#0</span>
+				<input v-model='newQuestion'>
 			</li>
 		</ul>
 	</div>
