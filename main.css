@@ -2,6 +2,10 @@
 	outline: none;
 }
 
+h3{
+	margin: 0;
+}
+
 body {
 	color: #eee;
 	  background: #08f;
@@ -39,7 +43,7 @@ ul{
 	display:flex;
 	margin: .5em;
 	box-shadow: 0 .2em .2em  rgba(0,0,0,.2);
-	
+
 }
 .question button, .question input{
 	margin: 0;

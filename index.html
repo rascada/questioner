@@ -46,7 +46,7 @@
 
 		<ul v-show='focus == null'>
 			<li track-by='$index' v-for='group in groups' class='question'>
-				<button @click='changeGroup($index)'> {{ group.name }} </button>
+				<button @click='changeGroup($index)'> <h3> {{ group.name }} </h3> </button>
 			</li>
 		</ul>
 
