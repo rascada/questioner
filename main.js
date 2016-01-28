@@ -36,6 +36,11 @@ var vm = new Vue({
       }
     },
 
+    changeGroup($index) {
+      this.focus = $index;
+      this.randomQuestion = null;
+    },
+
     drawLots: function() {
       this.randomQuestion = Math.random() * this.questions.length | 0;
     },
