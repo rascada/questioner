@@ -6,6 +6,14 @@
 	margin: 0;
 }
 
+#settings > h1{
+	margin: .25em;
+	padding: .25em;
+	border-radius: .1em;
+	box-shadow: 0 .1em .2em rgba(0,0,0,.2);
+	background: #f90;
+}
+
 h3{
 	margin: 0;
 }
