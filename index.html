@@ -23,7 +23,7 @@
 			<li track-by='$index' v-for='group in groups' class='question'>
 				<span>{{ $index | questionNumber }}</span>
 				<input v-model='group.name'>
-				<button @click='changeGroup($index)'> Pytania </button>
+				<button @click='changeGroup($index)'> Pytania ({{ group.questions.length }}) </button>
 				<button @click='removeGroup($index)'>X</button>
 			</li>
 		</ul>
