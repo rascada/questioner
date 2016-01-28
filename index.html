@@ -5,7 +5,7 @@
 </head>
 <body>
 	<div>
-		<button @click='settings = !settings'>Ustawienia</button>
+		<button @click='settings = !settings'>{{ settings ? 'questioner' : 'Ustawienia'}}</button>
 		<button v-show='focus != null' @click='focus = null'>Wszystkie grupy</button>
 	</div>
 
