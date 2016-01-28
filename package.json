@@ -1,0 +1,19 @@
+{
+  "name": "questioner",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rascada/questioner.git"
+  },
+  "author": "Damian Martyniak",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/rascada/questioner/issues"
+  },
+  "homepage": "https://github.com/rascada/questioner#readme"
+}

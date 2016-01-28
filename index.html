@@ -1,0 +1,51 @@
+﻿<!doctype>
+<head>
+	<title>Pytania</title>
+	<link rel='stylesheet' href='main.css'>
+</head>
+<body>
+	<div>
+		<button @click='addQuestionContainer = !addQuestionContainer'>Pytania</button>					
+	</div>
+	
+	<div id='settings' v-show='addQuestionContainer'>
+		<input placeholder='Jakie pytanie?' v-model='newQuestion'>
+		<button @click='addQuestion'>Dodaj pytanie</button>
+		<ul>
+			<li v-for='question in questions' class='question'><span>{{ $index | questionNumber }}</span><input v-model='question'><button @click='remove($index)'>X</button></li>
+		</ul>
+		
+		<div>
+			<div class='export'> 
+				<p> export  </p>
+				<span> {{ questionsJson }} </span>
+			</div>
+			
+			<div class='export'> 
+				<div>
+					<span> import  </span>
+					<button>Przywróć</button>
+				</div>
+				<textarea></textarea>
+			</div>			
+		</div>
+		
+	</div>
+	<div v-show='!addQuestionContainer' class='cont' id='drawLotsCont'>
+		
+		<div id='drawLots'>
+			<div>
+				<h1>{{ questions[randomQuestion]}}</h1>
+			</div>
+			
+			<div>
+				<button @click='drawLots'>Losuj pytanie</button>
+				{{ randomQuestion | questionNumber }}
+			</div>
+			
+		</div>
+	
+	</div>
+	<script src='vue.js'></script>
+	<script src='main.js'></script>
+</body>

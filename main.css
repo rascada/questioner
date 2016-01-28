@@ -1,0 +1,95 @@
+*{
+	outline: none;
+}
+
+body {
+	color: #eee;
+	  background: #08f;
+	  margin: 0;
+	  height: 100vh;
+	  display: flex;
+	  flex-flow: column;
+}
+#drawLotsCont{
+	flex-grow: 1;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+#drawLots{
+	background: #eee;
+	color: #444;
+	text-align:center;
+	padding: 2em;
+}
+
+#drawLots div{
+	display: flex;
+	flex-flow: column;
+}
+
+ul{
+    display: flex;
+    flex-wrap: wrap;
+	list-style-type: none;
+	padding: 0;
+}
+.question{
+	display:flex;
+	margin: .5em;
+	box-shadow: 0 .2em .2em  rgba(0,0,0,.2);
+	
+}
+.question button, .question input{
+	margin: 0;
+	box-shadow:none;
+}
+.question span{
+	padding: .5em;
+	background:#f90
+}
+.export{
+	margin: 1em;
+	display:flex;
+	flex-flow:column;
+	align-items: flex-start;
+	flex-grow: 0;
+}
+.export div span, .export p{
+	margin: 0;
+	padding:.5em;
+	background: #eee;
+	flex-grow: 1;
+	color:#08f;
+}
+.export > span,.export textarea {
+	margin: 0;
+	background:#eee;
+	padding: 2em;
+	color:#444;
+}
+
+input, button, textarea{
+	border: 0;
+	padding: .75em;
+	border-radius:.2em;
+	box-shadow: 0 .2em .2em  rgba(0,0,0,.2);
+}
+input, textarea{
+	margin: .5em;
+}
+
+button{
+	cursor: pointer;
+	margin: 1em;
+	background: #f90;
+	color: #fff;
+	transition: .2s;
+}
+button:hover{
+	transform: scale(1.1);
+}
+button:active{
+	transform: scale(.9);
+}
