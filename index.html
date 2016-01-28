@@ -5,47 +5,65 @@
 </head>
 <body>
 	<div>
-		<button @click='addQuestionContainer = !addQuestionContainer'>Pytania</button>					
+		<button @click='settings = !settings'>Ustawienia</button>
+		<button v-show='focus != null' @click='focus = null'>Wszystkie grupy</button>
 	</div>
-	
-	<div id='settings' v-show='addQuestionContainer'>
-		<input placeholder='Jakie pytanie?' v-model='newQuestion'>
+
+	<div v-show='false'>
+		<div class='export'>
+			<p> export  </p>
+			<span> {{ questionsJson }} </span>
+		</div>
+	</div>
+
+	<div v-show='focus == null && settings'>
+		<input placeholder='Nazwa grupy' v-model='newGroup'>
+		<button @click='addGroup'>Dodaj grupę</button>
+		<ul>
+			<li track-by='$index' v-for='group in groups' class='question'>
+				<span>{{ $index | questionNumber }}</span>
+				<input v-model='group.name'>
+				<button @click='focus = $index'> Pytania </button>
+				<button @click='remove($index)'>X</button>
+			</li>
+		</ul>
+	</div>
+
+	<div id='settings' v-show='focus != null && settings'>
+		<h1> {{ focus != null&&groups[focus].name }} </h1>
+		<input placeholder='Pytanie' v-model='newQuestion'>
 		<button @click='addQuestion'>Dodaj pytanie</button>
 		<ul>
-			<li v-for='question in questions' class='question'><span>{{ $index | questionNumber }}</span><input v-model='question'><button @click='remove($index)'>X</button></li>
+			<li track-by="$index" v-for='question in questions' class='question'>
+				<span>{{ $index | questionNumber }}</span>
+				<input v-model='question'>
+				<button @click='remove($index)'>X</button>
+			</li>
 		</ul>
-		
-		<div>
-			<div class='export'> 
-				<p> export  </p>
-				<span> {{ questionsJson }} </span>
-			</div>
-			
-			<div class='export'> 
-				<div>
-					<span> import  </span>
-					<button>Przywróć</button>
-				</div>
-				<textarea></textarea>
-			</div>			
-		</div>
-		
 	</div>
-	<div v-show='!addQuestionContainer' class='cont' id='drawLotsCont'>
-		
-		<div id='drawLots'>
+
+	<div v-show='!settings' class='cont' id='drawLotsCont'>
+
+		<ul v-show='focus == null'>
+			<li track-by='$index' v-for='group in groups' class='question'>
+				<button @click='focus = $index'> {{ group.name }} </button>
+			</li>
+		</ul>
+
+		<div id='drawLots' v-show='questions.length'>
+			<h1> Questioner </h1>
 			<div>
-				<h1>{{ questions[randomQuestion]}}</h1>
+				<h1 v-show='!questions.length'>Nie wybrano grupy</h1>
+				<h1>{{ randomQuestion != null ? questions[randomQuestion] : 'losuj' }}</h1>
 			</div>
-			
+
 			<div>
 				<button @click='drawLots'>Losuj pytanie</button>
 				{{ randomQuestion | questionNumber }}
 			</div>
-			
 		</div>
-	
 	</div>
+
 	<script src='vue.js'></script>
 	<script src='main.js'></script>
 </body>

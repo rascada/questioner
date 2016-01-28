@@ -1,26 +1,38 @@
 Vue.filter('questionNumber', function(value) {
-  return value != null ? '#' + (Number(value) + 1)  : '';
+  return value != null ? '#' + (+value + 1)  : '';
 });
 
 var vm = new Vue({
   el: 'body',
   data: {
-    addQuestionContainer: false,
     newQuestion: '',
-    questions: [],
+    newGroup: '',
+    focus: null,
+    groups: [],
+    settings: false,
     randomQuestion: null,
   },
-  ready: function() {
-    var jsonQuestions = JSON.parse(localStorage.getItem('questions'));
 
-    this.questions = jsonQuestions || [];
+  ready: function() {
+    var groupsJson = JSON.parse(localStorage.getItem('groups')) || [];
+
+    this.groups = groupsJson;
+    this.$watch('groups', this.save, { deep: true });
   },
 
   methods: {
     addQuestion: function() {
-      if (this.newQuestion) {
+      console.log(this.newQuestion);
+      if (this.newQuestion && this.focus != null) {
         this.questions.push(this.newQuestion);
         this.newQuestion = '';
+      }
+    },
+
+    addGroup: function() {
+      if (this.newGroup) {
+        this.groups.push({ name: this.newGroup, questions: [] });
+        this.newGroup = '';
       }
     },
 
@@ -28,18 +40,30 @@ var vm = new Vue({
       this.randomQuestion = Math.random() * this.questions.length | 0;
     },
 
-    remove: function($index) {
-      this.questions.splice($index, 1);
+    removeGroup: function($index) {
+      this.remove(this.groups, $index);
     },
-  },
-  computed: {
-    questionsJson: function() {
-      var json = JSON.stringify(this.questions);
 
-      if (this.questions.length)
-      localStorage.setItem('questions', json);
+    removeQuestion: function($index) {
+      this.remove(this.questions, $index);
+    },
+
+    remove: function(array, $index) {
+      array.splice($index, 1);
+    },
+
+    save: function() {
+      var json = JSON.stringify(this.groups);
+
+      this.groups.length && localStorage.setItem('groups', json);
 
       return json;
-    }, // router - wrt64gs v5 - v6 1.50.6
+    },
+  },
+
+  computed: {
+    questions: function() {
+      return this.focus != null ? this.groups[this.focus].questions : [];
+    },
   },
 });
