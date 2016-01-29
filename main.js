@@ -41,8 +41,15 @@ var vm = new Vue({
       this.randomQuestion = null;
     },
 
+    random(n) {
+      return Math.random() * n | 0;
+    },
+
     drawLots: function() {
-      this.randomQuestion = Math.random() * this.questions.length | 0;
+      let old = this.randomQuestion;
+
+      while (old == this.randomQuestion)
+        this.randomQuestion = this.random(this.questions.length);
     },
 
     removeGroup: function($index) {
