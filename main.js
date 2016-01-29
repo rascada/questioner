@@ -1,3 +1,5 @@
+'use strict';
+
 var vm = new Vue({
   el: 'body',
   data: {
@@ -10,7 +12,9 @@ var vm = new Vue({
   },
 
   filters: {
-    questionNumber: value => value != null ? '#' + (+value + 1)  : '',
+    questionNumber: function(value) { 
+   	return value != null ? '#' + (+value + 1)  : '';
+    },
   },
 
   ready: function() {
@@ -36,7 +40,7 @@ var vm = new Vue({
       }
     },
 
-    changeGroup($index) {
+    changeGroup: function($index) {
       this.focus = $index;
       this.randomQuestion = null;
     },
