@@ -1,7 +1,3 @@
-Vue.filter('questionNumber', function(value) {
-  return value != null ? '#' + (+value + 1)  : '';
-});
-
 var vm = new Vue({
   el: 'body',
   data: {
@@ -11,6 +7,10 @@ var vm = new Vue({
     groups: [],
     settings: false,
     randomQuestion: null,
+  },
+
+  filters: {
+    questionNumber: value => value != null ? '#' + (+value + 1)  : '',
   },
 
   ready: function() {
