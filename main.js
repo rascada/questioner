@@ -50,10 +50,14 @@ var vm = new Vue({
     },
 
     drawLots: function() {
-      let old = this.randomQuestion;
+      var old = this.randomQuestion;
+      var questions  = this.questions.length;
 
-      while (old == this.randomQuestion)
-        this.randomQuestion = this.random(this.questions.length);
+      if (questions > 1) 
+	while (old == this.randomQuestion && questions > 1)
+          this.randomQuestion = this.random(questions);
+      else
+	this.randomQuestion = 0;
     },
 
     removeGroup: function($index) {
